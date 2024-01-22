@@ -3,9 +3,26 @@
 import mongoose from 'mongoose';
 
 const TodoSchema = new mongoose.Schema({
-  value: {
+  title: {
     type: String,
-    required: true, // value 필드는 필수 요소입니다.
+    required: true, // title 필드는 필수 요소입니다.
+  },
+  content: {
+    type: String,
+    required: false, // content 필드는 필수 요소입니다.
+  },
+  author: {
+    type: String,
+    required: true, // author 필드는 필수 요소입니다.
+  },
+  status: {
+    type: String,
+    default: "FOR_SALE",
+    required: false, 
+  },
+  password: {
+    type: Number,
+    required: true, // password 필드는 필수 요소입니다.
   },
   order: {
     type: Number,
@@ -15,7 +32,8 @@ const TodoSchema = new mongoose.Schema({
     type: Date, // doneAt 필드는 Date 타입을 가집니다.
     required: false, // doneAt 필드는 필수 요소가 아닙니다.
   },
-});
+},
+{timestamps : true});
 
 // 프론트엔드 서빙을 위한 코드입니다. 모르셔도 괜찮아요!
 TodoSchema.virtual('todoId').get(function () {
